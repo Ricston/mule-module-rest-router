@@ -6,11 +6,16 @@
     <version>1.2</version>
     <packaging>mule-module</packaging>
     <name>Mule REST Router Module</name>
+    
+    <properties>
+<!--     	<devkit.studio.package.skip>false</devkit.studio.package.skip> -->
+		<mule.version>3.4.0</mule.version>
+    </properties>
 
     <parent>
         <groupId>org.mule.tools.devkit</groupId>
         <artifactId>mule-devkit-parent</artifactId>
-        <version>3.3.1</version>
+        <version>3.4.0</version>
     </parent>
 
     <repositories>
@@ -36,5 +41,13 @@
         </developerConnection>
         <url>http://github.com/mulesoft/mule-module-rest-router</url>
     </scm>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.mule.modules</groupId>
+			<artifactId>mule-module-json</artifactId>
+			<version>${mule.version}</version>
+		</dependency>
+	</dependencies>
 
 </project>

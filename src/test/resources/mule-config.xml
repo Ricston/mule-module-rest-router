@@ -59,5 +59,30 @@
             </rest-router:get>
         </rest-router:router> 
     </flow>
+    
+    <flow name="basicTransformation">
+    	<!-- BEGIN_INCLUDE(rest-router:router) -->
+        <rest-router:router templateUri="http://{userid}.blog.com/users" 
+        		getProduces="application/json" 
+        		consumesClass="org.mule.modules.entity.Person"
+        		putConsumes="application/json" 
+        		postConsumes="application/json">
+            <rest-router:get>
+                <expression-transformer expression="return new org.mule.modules.entity.Person(&quot;Alan&quot;, &quot;Cassar&quot;);" />
+            </rest-router:get>
+            <rest-router:put>
+                <logger message="PUT: #[payload]" level="INFO"/>
+            </rest-router:put>
+            <rest-router:post>
+                <logger message="POST: #[payload]" level="INFO"/>
+            </rest-router:post>
+            <rest-router:delete>
+                <expression-transformer>
+                    <return-argument evaluator="string" expression="Deleting comment on #[variable:title] for user #[variable:userid]"/>
+                </expression-transformer>
+            </rest-router:delete>
+        </rest-router:router>
+        <!-- END_INCLUDE(rest-router:router) -->
+    </flow>
 
 </mule>

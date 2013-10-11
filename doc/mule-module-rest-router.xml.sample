@@ -11,7 +11,10 @@
     <flow name="commentsFlow">
         <http:inbound-endpoint exchange-pattern="request-response" host="localhost" />
         <!-- do not include domain nor protocol, just the path -->
-        <rest-router:router templateUri="/{userid}/comments/{title}/feed">
+        <rest-router:router templateUri="/{userid}/comments/{title}/feed" 	getProduces="application/json"
+        																	consumesClass="com.mule.modules.entity.Person"
+        																	putConsumes="application/json" 
+        																	postConsumes="application/json">
             <rest-router:get>
                 <expression-transformer>
                     <return-argument evaluator="string" expression="Retrieving comment on #[variable:title] for user #[variable:userid]"/>
